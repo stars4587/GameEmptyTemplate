@@ -1,16 +1,33 @@
 import processing.core.PApplet;
 
+import java.util.ArrayList;
+
 public class Game extends PApplet {
     // TODO: declare game variables
+    ArrayList<Alien> aliens = new ArrayList<>();
+    int yspeed;
 
     public void settings() {
         size(800, 800);   // set the window size
-
     }
 
     public void setup() {
-        // TODO: initialize game variables
+        yspeed = 0;
+
+        for (int j = 50; j < 250; j += 50) {
+           for (int i = 50; i < 730; i += 75) {
+               System.out.println(i);
+               System.out.println(j);
+              Alien a = new Alien(i, j, yspeed);
+              aliens.add(a);
+
+            }
+
+        }
+        System.out.println(aliens.toString());
     }
+        // TODO: initialize game variables
+
 
     /***
      * Draws each frame to the screen.  Runs automatically in a loop at frameRate frames a second.
@@ -19,12 +36,20 @@ public class Game extends PApplet {
     public void draw() {
         background(255);    // paint screen white
         fill(0,255,0);          // load green paint color
-        ellipse(mouseX, mouseY, 60, 60);  // draw circle at mouse loc
-        ellipse(mouseX - 80, mouseY, 60, 60);  // draw circle at mouse loc
-        ellipse(mouseX + 80, mouseY, 60, 60);  // draw circle at mouse loc
+        rect(mouseX, 700, 100, 20);  // draw circle at mouse loc
+        //for (int j = 50; j < 250; j+=50) {
+          //  for (int i = 50; i < 730; i+=75) {
+                //Alien.draw(this);
+            //}
+
+        //}
+        for(Alien a: aliens) {
+            a.draw(this);
+        }
     }
 
     public static void main(String[] args) {
         PApplet.main("Game");
     }
+
 }
